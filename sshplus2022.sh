@@ -51,14 +51,14 @@ fi
 }
 phpmyadminfix(){
 rm /etc/httpd/conf.d/phpMyAdmin.conf
-wget https://raw.githubusercontent.com/gustavossh/phpfix/main/phpMyAdmin.conf -O /etc/httpd/conf.d/phpMyAdmin.conf
+wget https://raw.githubusercontent.com/gugajs/phpfix/main/phpMyAdmin.conf -O /etc/httpd/conf.d/phpMyAdmin.conf
 chmod 777 /etc/httpd/conf.d/phpMyAdmin.conf
 service httpd restart
 installweb
 }
 installweb(){
 cd /var/www/html
-wget https://raw.githubusercontent.com/gustavossh/2022sshplus/main/2022.zip
+wget https://raw.githubusercontent.com/gugajs/2022sshplus/main/2022.zip
 unzip 2022.zip
 sed -i "s;1010;$root_password;g" /var/www/html/pages/system/pass.php > /dev/null 2>&1
 chmod 777 -R /var/www/
@@ -66,7 +66,7 @@ cd
 createdb
 }
 createdb(){
-wget https://raw.githubusercontent.com/gustavossh/2022sshplus/main/sshplus.sql
+wget https://raw.githubusercontent.com/gugajs/2022sshplus/main/sshplus.sql
 mysql -h localhost -u root -p$root_password -e "CREATE DATABASE sshplus"
 mysql -h localhost -u root -p$root_password --default_character_set utf8 sshplus < sshplus.sql
 rm banco.sql
@@ -78,10 +78,10 @@ crontab -l > mycron
 echo "@reboot /root/startup" >> mycron
 crontab mycron
 rm mycron
-wget https://raw.githubusercontent.com/gustavossh/2022sshplus/main/cronc.sh
-wget https://raw.githubusercontent.com/gustavossh/phpfix/main/cronb.sh
-wget https://raw.githubusercontent.com/gustavossh/phpfix/main/clean.sh
-wget https://raw.githubusercontent.com/gustavossh/phpfix/main/startup.sh
+wget https://raw.githubusercontent.com/gugajs/2022sshplus/main/cronc.sh
+wget https://raw.githubusercontent.com/gugajs/phpfix/main/cronb.sh
+wget https://raw.githubusercontent.com/gugajs/phpfix/main/clean.sh
+wget https://raw.githubusercontent.com/gugajs/phpfix/main/startup.sh
 chmod +x *.sh
 ./startup.sh
 final
